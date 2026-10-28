@@ -54,7 +54,13 @@ function getSubjectValues() {
 }
 
 function getEssayValue() {
-  return Number.parseInt(essayInput.value, 10) || 0;
+  return Number.parseInt(essayInput.value.replace(/\D/g, ""), 10) || 0;
+}
+
+function formatEssayInput(value) {
+  const whole = Math.floor(value / 1000);
+  const thousandths = String(value % 1000).padStart(3, "0");
+  return `${whole},${thousandths}`;
 }
 
 function updateEssayStatus() {
@@ -155,8 +161,9 @@ document.querySelectorAll("[data-subject]").forEach((input) => {
 essayInput.addEventListener("input", () => {
   const digits = essayInput.value.replace(/\D/g, "").slice(0, 6);
   const value = Math.min(Number.parseInt(digits, 10) || 0, 100000);
-  essayInput.value = digits === "" ? "" : String(value);
-  state.essayDigits = essayInput.value.length;
+  essayInput.value = digits === "" ? "" : formatEssayInput(value);
+  essayInput.setSelectionRange(essayInput.value.length, essayInput.value.length);
+  state.essayDigits = digits.length;
   updateEssayStatus();
   updateResult();
 });
