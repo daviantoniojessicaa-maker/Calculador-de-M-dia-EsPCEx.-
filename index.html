@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#182b49">
+  <meta name="description" content="Calculadora de média da EsPCEx: informe seus acertos e a nota da redação para conferir o resultado.">
+  <title>EsPCEx - Calculador de Média</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>EsPCEx - Calculador de Média</h1>
+    </header>
+
+    <section class="calculator" aria-labelledby="page-title">
+      <div class="page-heading">
+        <h2 id="page-title">Acertos por questões e média aritmética.</h2>
+        <p>Digite a quantidade de questões acertadas.</p>
+      </div>
+
+      <div class="page-content">
+        <div class="subject-grid" id="subject-grid" aria-label="Acertos por matéria"></div>
+        <section class="essay-card" id="essay-card" aria-labelledby="essay-title" hidden>
+          <h3 id="essay-title">Redação</h3>
+          <div class="essay-entry">
+            <label class="sr-only" for="essay">Nota da redação</label>
+            <input id="essay" type="text" inputmode="numeric" autocomplete="off" maxlength="6" aria-describedby="essay-help essay-status">
+            <span class="essay-status" id="essay-status" aria-live="polite"></span>
+          </div>
+          <p class="field-help" id="essay-help">Digite a nota em milésimos (ex.: 50.000).</p>
+        </section>
+      </div>
+
+      <section class="result-card" id="result-card" aria-labelledby="result-title" hidden>
+        <h3 id="result-title">Resultado - EsPCEx</h3>
+        <div class="result-summary">
+          <p id="total-correct">Acertos: 0 / 100</p>
+          <p id="average">Média ponderada: 0,00</p>
+        </div>
+        <h4>Abstração de mediana</h4>
+        <div class="score-grid" id="score-grid" aria-label="Pontuação por matéria"></div>
+      </section>
+
+      <nav class="page-navigation" aria-label="Navegação da calculadora">
+        <button id="page-button" type="button">PRÓXIMA PÁGINA</button>
+      </nav>
+      <p class="page-indicator" id="page-indicator" aria-live="polite">Página 1 de 2</p>
+    </section>
+  </main>
+</body>
+</html>
